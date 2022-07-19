@@ -1,6 +1,6 @@
 # v2-naruto-ts
 
-> 基于vue2.7的typescript模板
+> 基于 vue2.7 ts 写法尝鲜，vue2.7.0 beta 版
 > 详情请见：[Vue 2.7 "Naruto" Released](https://blog.vuejs.org/posts/vue-2-7-naruto.html)
 
 ## Project setup
