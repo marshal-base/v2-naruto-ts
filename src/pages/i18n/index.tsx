@@ -1,14 +1,14 @@
-import { defineComponent, ref } from 'vue'
-import type { VNode } from 'vue'
+import { defineComponent, ref } from 'vue';
+import type { VNode } from 'vue';
 
 export default defineComponent({
   name: 'i-18n',
   setup() {
-    const name = ref('name')
+    const name = ref('name');
 
     return {
       name,
-    }
+    };
   },
   render(h): VNode {
     return (
@@ -41,6 +41,6 @@ export default defineComponent({
           })}
         </div>
       </div>
-    )
+    );
   },
-})
+});

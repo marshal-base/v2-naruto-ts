@@ -1,7 +1,8 @@
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance } from 'vue';
+import type { Route } from 'vue-router';
 
-export function useRoute() {
-  const proxy = getCurrentInstance()?.proxy
+export function useRoute(): Route {
+  const proxy = getCurrentInstance()?.proxy;
 
-  return proxy?.$route
+  return proxy?.$route;
 }

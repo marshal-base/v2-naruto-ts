@@ -7,4 +7,4 @@ export default {
     id: 'a',
   },
   test: 'test11',
-}
+};

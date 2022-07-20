@@ -1,10 +1,10 @@
-import { defineComponent } from 'vue'
-import { VNode } from 'vue/types'
-import { NavBar } from 'vant'
+import { defineComponent } from 'vue';
+import { VNode } from 'vue/types';
+import { NavBar } from 'vant';
 
 interface IProps {
-  leftText: string
-  title?: string
+  leftText: string;
+  title?: string;
 }
 
 export default defineComponent<IProps>({
@@ -26,8 +26,8 @@ export default defineComponent<IProps>({
         title={this.title || this.$route.meta.title}
         left-text='返回'
         left-arrow
-        click-left={() => this.$router.go(-1)}
+        onClick-left={() => this.$router.go(-1)}
       />
-    )
+    );
   },
-})
+});

@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue'
-import styles from './index.module.scss'
+import { defineComponent } from 'vue';
+import styles from './index.module.scss';
 
 export default defineComponent({
   name: 'view-main',
@@ -8,6 +8,6 @@ export default defineComponent({
       <div class={styles['view-main']}>
         <router-view></router-view>
       </div>
-    )
+    );
   },
-})
+});

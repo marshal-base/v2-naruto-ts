@@ -7,4 +7,4 @@ enum ESessionStorage {
   S_USER_NAME = 'S_USER_NAME',
 }
 
-export { ESessionStorage, ELocationStorage }
+export { ESessionStorage, ELocationStorage };

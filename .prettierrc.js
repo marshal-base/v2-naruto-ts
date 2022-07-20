@@ -4,7 +4,7 @@ module.exports = {
   jsxBracketSameLine: true,
   printWidth: 100,
   singleQuote: true,
-  semi: false,
+  semi: true,
   overrides: [
     {
       files: '*.json',

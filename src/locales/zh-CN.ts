@@ -6,4 +6,4 @@ export default {
     name: '名字叫 {name}',
     id: 'a',
   },
-}
+};

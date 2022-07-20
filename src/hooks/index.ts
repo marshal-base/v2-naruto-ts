@@ -1,5 +1,3 @@
-export { useDebounce } from './useDebounce'
-export { useThrottle } from './useThrottle'
-export { useRequest } from './useRequest'
-export { useRouter } from './useRouter'
-export { useRoute } from './useRoute'
+export { useRequest } from './useRequest';
+export { useRouter } from './useRouter';
+export { useRoute } from './useRoute';

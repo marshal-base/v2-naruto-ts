@@ -1,3 +1,3 @@
-import FetchHttp from './axios'
+import FetchHttp from './axios';
 
-export const http = new FetchHttp()
+export const http = new FetchHttp();

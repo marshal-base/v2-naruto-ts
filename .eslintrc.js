@@ -1,17 +1,5 @@
 module.exports = {
   root: true,
-  // settings: {
-  //   'import/resolver': {
-  //     "config": "node_modules/@vue/cli-service/webpack.config.js",
-  //     alias: {
-  //       map: [
-  //         ["src", '../src']
-  //       ],
-  //       // 告诉resolver-alias有哪些后缀的文件要解析
-  //       extensions: ['.ts', '.tsx', '.vue', '.json'],
-  //     },
-  //   },
-  // },
   env: {
     browser: true,
     node: true,
@@ -72,6 +60,12 @@ module.exports = {
     'spaced-comment': ['error', 'always'],
     'vue/no-mutating-props': ['off'],
     // 在 case 中可以使用语法声明
-    'no-case-declarations': ['off']
+    'no-case-declarations': ['off'],
+    'no-unused-vars': [
+      'error',
+      // we are only using this rule to check for unused arguments since TS
+      // catches unused variables but not args.
+      { varsIgnorePattern: '.*', args: 'none' }
+    ],
   }
 };

@@ -1,8 +1,8 @@
-import { getCurrentInstance } from 'vue'
-import VueRouter from 'vue-router'
+import { getCurrentInstance } from 'vue';
+import VueRouter from 'vue-router';
 
 export function useRouter(): VueRouter {
-  const proxy = getCurrentInstance()?.proxy
+  const proxy = getCurrentInstance()?.proxy;
 
-  return proxy?.$router
+  return proxy?.$router;
 }

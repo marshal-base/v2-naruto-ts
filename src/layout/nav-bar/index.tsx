@@ -1,25 +1,25 @@
-import { ref, defineComponent } from 'vue'
-import { useRouter, useRoute } from '@/hooks/index'
+import { ref, defineComponent } from 'vue';
+import { useRouter, useRoute } from '@/hooks/index';
 
-import { Tabbar, TabbarItem } from 'vant'
+import { Tabbar, TabbarItem } from 'vant';
 
 export default defineComponent({
   name: 'tabbar',
   setup() {
-    const route = useRoute()
-    const router = useRouter()
-    const active = ref(route?.path)
+    const route = useRoute();
+    const router = useRouter();
+    const active = ref(route?.path);
 
     const handleTabbarChange = (path: string) => {
-      active.value = path
+      active.value = path;
 
-      router.push(path)
-    }
+      router.push(path);
+    };
 
     return {
       active,
       handleTabbarChange,
-    }
+    };
   },
   render(h) {
     return (
@@ -31,6 +31,6 @@ export default defineComponent({
           国际化
         </TabbarItem>
       </Tabbar>
-    )
+    );
   },
-})
+});
