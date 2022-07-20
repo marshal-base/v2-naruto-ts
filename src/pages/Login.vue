@@ -18,7 +18,7 @@
           :rules="[{ required: true, message: '请填写密码' }]"
         />
       </van-cell-group>
-      <div style="margin: 16px">
+      <div style="margin: 16px;">
         <van-button round block type="primary" native-type="submit" :loading="loading">
           提交
         </van-button>
@@ -29,6 +29,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+import { ERoutePath } from '@/const';
 import { ESessionStorage } from '@/types/storage';
 import { session } from '@/utils/storage';
 import { useRouter, useRequest } from '@/hooks/index';
@@ -45,7 +46,7 @@ const onSubmit = async (values: { uid: string; pwd: string }) => {
   if (logined) {
     session(ESessionStorage.S_TOKEN, 'tokened');
     session(ESessionStorage.S_USER_NAME, uid.value);
-    router.push('/');
+    router.push(ERoutePath.ROOT);
   }
 };
 </script>
