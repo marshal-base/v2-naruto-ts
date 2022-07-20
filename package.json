@@ -46,6 +46,7 @@
     "eslint": "^7.32.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
+    "husky": "^8.0.1",
     "postcss-html": "^1.5.0",
     "postcss-scss": "^4.0.4",
     "prettier": "^2.7.1",
@@ -65,5 +66,10 @@
     "vconsole": "^3.14.6",
     "vconsole-webpack-plugin": "^1.7.3",
     "webpack": "^4.46.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }  
   }
 }
