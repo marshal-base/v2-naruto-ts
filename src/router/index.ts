@@ -1,25 +1,27 @@
 import Vue from 'vue';
 import VueRouter, { Route, RouteConfig } from 'vue-router';
-import Tabbar from '@/layout';
+
+import { ERoutePath } from '@/const';
+import { ESessionStorage } from '@/types/storage';
 import { session } from '@/utils/storage';
+import Tabbar from '@/layout';
 import Home from '@/pages/home';
 import I18n from '@/pages/i18n';
-import { ESessionStorage } from '@/types/storage';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/',
+    path: ERoutePath.ROOT,
     name: 'Tabbar',
     component: Tabbar,
-    redirect: '/home',
+    redirect: ERoutePath.HOME,
     meta: {
       title: '首页',
     },
     children: [
       {
-        path: '/home',
+        path: ERoutePath.HOME,
         name: 'Home',
         component: Home,
         meta: {
@@ -27,7 +29,7 @@ const routes: Array<RouteConfig> = [
         },
       },
       {
-        path: '/i-18n',
+        path: ERoutePath.I18N,
         name: 'I18n',
         component: I18n,
         meta: {
@@ -37,7 +39,7 @@ const routes: Array<RouteConfig> = [
     ],
   },
   {
-    path: '/login',
+    path: ERoutePath.LOGIN,
     name: 'login',
     component: () => import('@/pages/Login.vue'),
     meta: {

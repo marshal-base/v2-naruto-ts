@@ -1,7 +1,9 @@
 import { ref, defineComponent } from 'vue';
+import { Tabbar, TabbarItem } from 'vant';
+
+import { ERoutePath } from '@/const';
 import { useRouter, useRoute } from '@/hooks/index';
 
-import { Tabbar, TabbarItem } from 'vant';
 
 export default defineComponent({
   name: 'tabbar',
@@ -10,7 +12,7 @@ export default defineComponent({
     const router = useRouter();
     const active = ref(route?.path);
 
-    const handleTabbarChange = (path: string) => {
+    const handleTabbarChange = (path: ERoutePath) => {
       active.value = path;
 
       router.push(path);
@@ -24,10 +26,10 @@ export default defineComponent({
   render(h) {
     return (
       <Tabbar value={this.active} onChange={this.handleTabbarChange}>
-        <TabbarItem name='/home' icon='home-o'>
+        <TabbarItem name={ERoutePath.HOME} icon='home-o'>
           tsx 私有样式
         </TabbarItem>
-        <TabbarItem name='/i-18n' icon='setting-o'>
+        <TabbarItem name={ERoutePath.I18N} icon='setting-o'>
           国际化
         </TabbarItem>
       </Tabbar>

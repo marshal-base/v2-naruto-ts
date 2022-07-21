@@ -1,4 +1,4 @@
-const AutoImport = require("unplugin-auto-import/webpack");
+const AutoImport = require("unplugin-auto-import/webpack")
 const Components = require("unplugin-vue-components/webpack")
 const { VantResolver } = require("unplugin-vue-components/resolvers")
 const merge = require('lodash/merge')
