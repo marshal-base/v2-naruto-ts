@@ -41,7 +41,7 @@ const routes: Array<RouteConfig> = [
   {
     path: ERoutePath.LOGIN,
     name: 'login',
-    component: () => import('@/pages/Login.vue'),
+    component: () => import('@/pages/sales/Login.vue'),
     meta: {
       title: '登录',
     },

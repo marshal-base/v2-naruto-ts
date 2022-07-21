@@ -2,12 +2,36 @@ const AutoImport = require("unplugin-auto-import/webpack")
 const Components = require("unplugin-vue-components/webpack")
 const { VantResolver } = require("unplugin-vue-components/resolvers")
 const merge = require('lodash/merge')
+const glob =require('glob')
+const dayjs =require('dayjs')
 const tsImportPluginFactory = require('ts-import-plugin') // 按加载
 var vConsolePlugin = require('vconsole-webpack-plugin');
 const isPROD = process.env.NODE_ENV === 'production';
+const buildType = process.env.buildType
+
+console.log(buildType, 'buildType');
+function getEntry({ page }) {
+  return glob.sync(page).reduce((pre, cur) => {
+    const tmp = cur.split('/').splice(-3);
+
+    pre[tmp[1]] = {
+      entry: 'src/' + tmp[0] + '/' + tmp[1] + '/' + 'index.ts',
+      template: 'src/' + tmp[0] + '/' + tmp[1] + '/' + 'index.html',
+      filename: (buildType ? 'index' : tmp[1]) + '.html',
+      version: dayjs().valueOf(),
+      cdn: {
+        css: process.env.CDN_CSS,
+        js: process.env.CDN_JS,
+      },
+    };
+
+    return pre;
+  }, {});
+}
 
 module.exports = {
   parallel: true, // 开启多线程打包
+  pages: getEntry({ page: `src/entry/${buildType || '**?'}/*.html` }),
   configureWebpack: {
     plugins: [
       new vConsolePlugin({
@@ -51,9 +75,7 @@ module.exports = {
     open: true,
     proxy: {
       "/": {
-        target: "https://mcs8-test.bobandata.com:7715", // 目标地址
-        ws: true, // 是否代理websockets
-        changeOrigin: true, // 设置同源 默认false，是否需要改变原始主机头为目标URL,
+        target: "http://www.baid.com", // 目标地址
       },
     },
   },

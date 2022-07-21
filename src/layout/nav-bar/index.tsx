@@ -1,9 +1,8 @@
 import { ref, defineComponent } from 'vue';
 import { Tabbar, TabbarItem } from 'vant';
 
-import { ERoutePath } from '@/const';
+import { ERoutePath } from '@/const/sales/enums';
 import { useRouter, useRoute } from '@/hooks/index';
-
 
 export default defineComponent({
   name: 'tabbar',
