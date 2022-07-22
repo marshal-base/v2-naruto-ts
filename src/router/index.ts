@@ -4,9 +4,6 @@ import VueRouter, { Route, RouteConfig } from 'vue-router';
 import { ERoutePath } from '@/const';
 import { ESessionStorage } from '@/types/storage';
 import { session } from '@/utils/storage';
-import Tabbar from '@/layout';
-import Home from '@/pages/home';
-import I18n from '@/pages/i18n';
 
 Vue.use(VueRouter);
 
@@ -14,7 +11,7 @@ const routes: Array<RouteConfig> = [
   {
     path: ERoutePath.ROOT,
     name: 'Tabbar',
-    component: Tabbar,
+    component: () => import(/* webpackChunkName: "Tabbar" */ '@/layout'),
     redirect: ERoutePath.HOME,
     meta: {
       title: '首页',
@@ -23,7 +20,7 @@ const routes: Array<RouteConfig> = [
       {
         path: ERoutePath.HOME,
         name: 'Home',
-        component: Home,
+        component: () => import(/* webpackChunkName: "Home" */ '@/pages/home'),
         meta: {
           title: '首页',
         },
@@ -31,7 +28,7 @@ const routes: Array<RouteConfig> = [
       {
         path: ERoutePath.I18N,
         name: 'I18n',
-        component: I18n,
+        component: () => import(/* webpackChunkName: "I18n" */ '@/pages/i18n'),
         meta: {
           title: '国际化',
         },
@@ -41,9 +38,17 @@ const routes: Array<RouteConfig> = [
   {
     path: ERoutePath.LOGIN,
     name: 'login',
-    component: () => import('@/pages/Login.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '@/pages/Login.vue'),
     meta: {
       title: '登录',
+    },
+  },
+  {
+    path: ERoutePath.OTHER,
+    name: 'other',
+    component: () => import(/* webpackChunkName: "other" */ '@/pages/Login.vue'),
+    meta: {
+      title: '其他页',
     },
   },
 ];
@@ -53,6 +58,11 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to: Route, from, next) => {
+  // 防止相同路由本地开发爆红
+  if (to.path === from.path) {
+    return;
+  }
+
   if (to.path === '/login') {
     next();
   } else if (!session(ESessionStorage.S_TOKEN)) {

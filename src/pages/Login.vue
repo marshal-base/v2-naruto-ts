@@ -46,7 +46,7 @@ const onSubmit = async (values: { uid: string; pwd: string }) => {
   if (logined) {
     session(ESessionStorage.S_TOKEN, 'tokened');
     session(ESessionStorage.S_USER_NAME, uid.value);
-    router.push(ERoutePath.ROOT);
+    router.push(ERoutePath.HOME);
   }
 };
 </script>

@@ -6,13 +6,33 @@ const tsImportPluginFactory = require('ts-import-plugin') // 按加载
 var vConsolePlugin = require('vconsole-webpack-plugin');
 const isPROD = process.env.NODE_ENV === 'production';
 
+const assetsCDN = {
+  // webpack build externals
+  externals: {
+    vue: 'Vue',
+    'vue-router': 'VueRouter',
+    vuex: 'Vuex',
+    axios: 'axios'
+  },
+  css: [],
+  js: [
+    '//cdn.jsdelivr.net/npm/vue@2.7.0/dist/vue.min.js',
+    '//cdn.jsdelivr.net/npm/vue-router@3.5.1/dist/vue-router.min.js',
+    '//cdn.jsdelivr.net/npm/vuex@3.4.0/dist/vuex.min.js',
+    '//cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js'
+  ]
+}
+
 module.exports = {
   parallel: true, // 开启多线程打包
+  productionSourceMap: false,
+  lintOnSave: false,
+  publicPath: process.env.PUBLISH_PATH,
   configureWebpack: {
     plugins: [
       new vConsolePlugin({
         filter: [],  // 需要过滤的入口文件
-        enable: !isPROD // 发布代码前记得改回 false
+        enable: !isPROD
       }),
       AutoImport({
         imports: ["vue", "vue-router"],
@@ -23,8 +43,10 @@ module.exports = {
         resolvers: [VantResolver()],
       }),
     ],
+    externals: isPROD ? assetsCDN.externals : {}
   },
   chainWebpack: config => {
+    config.plugins.delete('prefetch')
     config.module
       .rule("ts")
       .use("ts-loader")
@@ -57,8 +79,6 @@ module.exports = {
       },
     },
   },
-  // 基本路径
-  publicPath: process.env.PUBLISH_PATH,
   // css: {
   //   requireModuleExtension: true,
   //   loaderOptions: {
@@ -70,5 +90,4 @@ module.exports = {
   //     },
   //   },
   // },
-  lintOnSave: false,
 };

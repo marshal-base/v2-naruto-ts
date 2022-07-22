@@ -3,4 +3,5 @@ export enum ERoutePath {
   LOGIN = '/login',
   HOME = '/home',
   I18N = '/i18n',
+  OTHER = '/other',
 }
