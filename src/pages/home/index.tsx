@@ -1,6 +1,6 @@
 import { defineComponent, toRefs, reactive } from 'vue';
 import type { VNode } from 'vue';
-
+import styled from 'vue-styled-components';
 import styles from './index.module.scss';
 
 interface IProps {
@@ -11,6 +11,15 @@ interface IDetail {
   id: number;
   name: string;
 }
+interface IScProps {
+  name: string;
+}
+
+const ScDiv = styled('div', {
+  name: String,
+})`
+  color: ${(props: IScProps) => (props.name ? '#fff' : 'blue')};
+`;
 
 export default defineComponent({
   name: 'home',
@@ -25,7 +34,7 @@ export default defineComponent({
 
     const handleClick = () => {
       emit('cb', detail);
-      detail.name = 'name2';
+      detail.name = '';
     };
 
     return {
@@ -35,9 +44,9 @@ export default defineComponent({
   },
   render(h): VNode {
     return (
-      <div onClick={this.handleClick} class={styles.test}>
+      <ScDiv onClick={this.handleClick} class={styles.test} name={this.name}>
         detail.name: {this.name} <br /> detail.id: {this.id}
-      </div>
+      </ScDiv>
     );
   },
 });
